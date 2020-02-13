@@ -6,6 +6,8 @@ class Szurubooru::Connection
   attr_accessor :auto_paginate
 
   def initialize(url, username, api_token, auto_paginate: false)
+    raise "URL cannot be nil" if url.nil?
+
     @conn = Faraday.new(url: url) do |faraday|
       faraday.request :json
       faraday.request :multipart
@@ -14,7 +16,7 @@ class Szurubooru::Connection
       faraday.headers["Accept"] = "application/json"
 
       faraday.use Faraday::Request::Retry
-      # faraday.use Faraday::Response::Logger
+      faraday.use Faraday::Response::Logger
       faraday.adapter Faraday.default_adapter
     end
 
@@ -60,6 +62,7 @@ class Szurubooru::Connection
   end
 
   def request(method, path, params, headers = {})
+    pp params
     @last_response = response = @conn.run_request(method, path, params, headers)
     response
   end

@@ -8,9 +8,9 @@ class Evergarden < Sinatra::Base
   disable :show_exceptions
 
   configure do
-    set :domain, ENV["SZURUBOORU_HOST"]
-    set :external_domain, ENV["EXTERNAL_SZURUBOORU_HOST"]
-    set :username, "username"
+    set :domain, ENV["SZURUBOORU_HOST"] || "http://bijutsu.nori.daikon"
+    set :external_domain, ENV["EXTERNAL_SZURUBOORU_HOST"] || "http://bijutsu.nori.daikon"
+    set :username, "nonbirithm"
     set :auth, "auth"
   end
 

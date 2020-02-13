@@ -3,7 +3,7 @@ require "lib/szurubooru/to_danbooru2"
 class Evergarden < Sinatra::Base
   get "/posts.json", provides: :json do
     limit = (params["limit"] || "100").to_i
-    page = (params["page"] || "0").to_i
+    page = (params["page"] || "1").to_i
     tags = params["tags"] || ""
     login = params["login"] || settings.username
     if login.empty?
@@ -15,7 +15,7 @@ class Evergarden < Sinatra::Base
     end
 
     options = {
-      "offset" => page * limit,
+      "offset" => (page-1) * limit,
       "limit" => limit
     }
 
