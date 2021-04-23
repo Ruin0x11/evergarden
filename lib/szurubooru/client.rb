@@ -22,6 +22,10 @@ class Szurubooru::Client
     search "/api/posts", query, options
   end
 
+  def search_pools(query, options = {})
+    search "/api/pools", query, options
+  end
+
   def get_post(id)
     @conn.get "/api/post/#{id}"
   end
@@ -37,8 +41,8 @@ class Szurubooru::Client
   private
 
   def search(path, query, options = {})
-    opts = options.merge("query" => query)
-    @conn.paginate(path, opts) do |data, last_response|
+    options = options.merge("query" => query)
+    @conn.paginate(path, options) do |data, last_response|
       data.items.concat last_response.data.items
     end
   end

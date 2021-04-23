@@ -56,4 +56,8 @@ class Evergarden < Sinatra::Base
 
     json Szurubooru::ToDanbooru2.post(resp.body, client.external_domain)
   end
+
+  get "/posts/:id" do
+    redirect "#{settings.domain}/posts/#{id}"
+  end
 end
