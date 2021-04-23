@@ -42,4 +42,3 @@ networks:
 
 # TODO
 - favorite support
-- pool support
