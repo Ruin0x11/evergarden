@@ -6,7 +6,7 @@ gemspec
 gem "rake", "~> 12.0"
 gem "faraday"
 gem "faraday_middleware"
-gem "sinatra", "~> 2.0"
+gem "sinatra", "~> 2.2"
 gem "sinatra-contrib", "~> 2.0"
 
 group :development, :test do
